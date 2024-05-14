@@ -1,29 +1,26 @@
 package domain.legend
 
-import domain.Damages
-import domain.Dice
+import domain.*
 import domain.Dice.Companion.aSixSidedDice
 import domain.Dice.Companion.rollSixSidedDice
-import domain.GameMode
-import domain.Might
 import domain.Might.Companion.total
 import domain.legend.Identity.Factory.create
-import domain.legend.model.LegendCombatChart.Companion.combatDiceCount
+import domain.legend.model.LegendCombatChart.Companion.combatDicePoolFor
 import ulid.ULID
 import vokorpg.domain.legend.model.Gear
 import vokorpg.domain.legend.model.Gear.Factory.standardGear
 
-// TODO: Is it a good idea to make it private ?
-data class Legend /* private constructor */(
+data class Legend(
     val identity: Identity,
     val strength: Strength,
     val agility: Agility,
     val perception: Perception,
+    // TODO: is it ok to move it on private var that being initiated in the factory ?
     val might: Might = total(strength.value, agility.value, perception.value),
     val gear: Gear,
+    // TODO: is it ok to move it on private var that being initiated in the factory ?
+    val combatDicePool: CombatDicePool = combatDicePoolFor(might)
 ) {
-    val combatDicePool = CombatDicePool(mutableListOf())
-
     companion object Factory {
         fun create(gameMode: GameMode, name: String): Legend = Legend(
             identity = create(name),
@@ -34,19 +31,8 @@ data class Legend /* private constructor */(
         )
     }
 
-    init {
-        combatDicePool.addDice(combatDiceCount(might.level))
-    }
-
-    // TODO: should be the legend that roll the dice ?
-    // TODO: with this came a question: do i need to have a Player ? The aggregate root could be a Player with, among other, a Legend
-    // TODO: then, rolling should belong to Player and not Legend
-    fun rolling(dice: Dice): Int = dice.roll()
-
-    fun dealsDamages(): Int = rollSixSidedDice(combatDicePool.dice.size)
-
-    // TODO: can we do something like this ? Tell don't ask ?
-    // infix fun deals(damages: Damages): Int =
+    // TODO: take bonus in account
+    fun attack(): Int = combatDicePool.roll()
     fun runAway(): Int = agility.value + rollSixSidedDice(2)
     infix fun takes(damages: Damages): Legend = this.copy(might = might - damages)
     fun isDead(): Boolean = might.remaining <= 0
@@ -101,9 +87,4 @@ value class Perception(val value: Int) {
     init {
         require(value > 0) { "Perception should be positive. Value = $value." }
     }
-}
-
-@JvmInline
-value class CombatDicePool(val dice: MutableList<Dice>) {
-    fun addDice(count: Int) = dice.addAll(List(count) { aSixSidedDice })
 }

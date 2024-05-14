@@ -5,13 +5,11 @@ data class Might(
     val remaining: Int = level
 ) {
     companion object {
-        val Int.might get() = Might(this)
-        // TODO: is it needed ?
-        fun total(vararg abilities: Int): Might = abilities.sum().might
+        val Int.mightLevels get() = Might(this)
 
-        // TODO: to have in mind
-//        fun total(vararg abilities: Int): Might = abilities.sum().might()
-//        fun Int.might() = Might(this)
+        // TODO: is it needed ?
+        // TODO: should it be Object instead of Int ? In that case, how to differentiate abilities and object or power bonus ?
+        fun total(vararg abilities: Int): Might = abilities.sum().mightLevels
     }
 
     init {
@@ -21,7 +19,6 @@ data class Might(
     operator fun minus(other: Damages) = this.copy(remaining = remaining - other.value)
 }
 
-// TODO: move out this class ?
 @JvmInline
 value class Damages(val value: Int) {
     companion object {

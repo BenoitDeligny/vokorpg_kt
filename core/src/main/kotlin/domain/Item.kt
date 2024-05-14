@@ -1,13 +1,14 @@
 package vokorpg.domain
 
-import vokorpg.domain.Item.Trait.DAMAGE
+import vokorpg.domain.Item.Perk.Companion.NONE
+import vokorpg.domain.Item.Trait.OTHER
 import vokorpg.domain.Type.*
 
 data class Item(
     val name: String,
     val type: Type,
-    val perk: Perk? = null,
-    val description: String = "",
+    val perk: Perk? = NONE,
+    val description: String = String(),
     val isRelic: Boolean = false
 ) {
     companion object Factory {
@@ -29,12 +30,19 @@ data class Item(
     data class Perk(
         val trait: Trait,
         val modifier: Int
-    )
+    ) {
+        companion object {
+            val NONE = Perk(trait = OTHER, modifier = 0)
+        }
+    }
 
     enum class Trait {
         DAMAGE,
         HEAL,
-        MIGHT
+        MIGHT,
+
+        // TODO: really ?
+        OTHER
     }
 
     // TODO: think about it
@@ -44,6 +52,7 @@ data class Item(
 //    }
 }
 
+// TODO: what about on class per type instead ?
 enum class Type {
     ARMOR,
     BELT,

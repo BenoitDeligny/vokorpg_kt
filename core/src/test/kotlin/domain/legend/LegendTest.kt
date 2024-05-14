@@ -1,9 +1,11 @@
 package domain.legend
 
+import domain.Damages
 import domain.Damages.Companion.damages
 import domain.GameMode.EASY
 import domain.GameMode.NORMAL
 import domain.Might
+import domain.Might.Companion.mightLevels
 import domain.legend.Legend.Factory.create
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.ranges.shouldBeIn
@@ -46,7 +48,7 @@ class LegendTest {
                 gameMode = NORMAL,
                 name = "MyHero"
             )
-                .copy(might = Might(level = 15))
+                .copy(might = 15.mightLevels)
                 .run {
                     this takes 5.damages
                 }

@@ -5,9 +5,9 @@
       <module name="core" target="17" />
       <module name="core.main" target="17" />
       <module name="core.test" target="17" />
-      <module name="fight" target="22" />
-      <module name="fight.main" target="22" />
-      <module name="fight.test" target="22" />
+      <module name="fight" target="17" />
+      <module name="fight.main" target="17" />
+      <module name="fight.test" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

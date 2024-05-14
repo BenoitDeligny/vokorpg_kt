@@ -1,7 +1,12 @@
 package domain.legend.model
 
+import domain.CombatDicePool
+import domain.Dice.Companion.aSixSidedDice
+import domain.Might
+
 enum class LegendCombatChart(
     val numberOfDice: Int,
+    // TODO: Should be Might instead of Int ?
     val minMightLevel: Int,
     val maxMightLevel: Int
 ) {
@@ -17,12 +22,8 @@ enum class LegendCombatChart(
     NINE(9, 235, 282),
     TEN(10, 283, Int.MAX_VALUE);
 
-    // TODO: who should have the ownership of this ? Tell don't ask
     companion object {
-        // TODO: should be Might instead of Int
-        fun combatDiceCount(level: Int): Int = combatChart(level).numberOfDice
-
-        // TODO: rename it maybe
-        private fun combatChart(level: Int): LegendCombatChart = entries.find { level in it.minMightLevel..it.maxMightLevel } ?: ZERO
+        fun combatDicePoolFor(might: Might): CombatDicePool = CombatDicePool(MutableList(retrieveCombatChartBy(might).numberOfDice) { aSixSidedDice})
+        private fun retrieveCombatChartBy(might: Might): LegendCombatChart = entries.find { might.level in it.minMightLevel..it.maxMightLevel } ?: ZERO
     }
 }
