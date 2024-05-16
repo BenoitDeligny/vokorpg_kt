@@ -42,6 +42,10 @@ data class Gear(
     }
 
     // TODO: add total might bonus
+        // Option 1: Reflection
+        // Option 2: Take each item separately
+        // Option 3: Use a Collection in Gear and then iterate
+        // Option 4: Something with interface or sealed ? To make sure, if new item appear, we can't forget it
     // TODO: add total damages bonus
     // TODO: add total heal bonus
 }
