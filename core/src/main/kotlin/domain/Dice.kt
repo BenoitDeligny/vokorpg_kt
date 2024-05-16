@@ -12,7 +12,6 @@ data class Dice(val sideCount: Sides = 6.sides) {
             require(diceCount > 0) { "Number of dice should be greater than 0. Dice = $diceCount." }
             return List(diceCount) { aSixSidedDice }.sumOf { it.roll() }
         }
-
     }
 
     init {

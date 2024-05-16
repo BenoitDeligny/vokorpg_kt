@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="domain.legend.LegendTest$Fails" tests="4" skipped="0" failures="0" errors="0" timestamp="2024-05-14T21:07:03" hostname="THEONE" time="0.009">
+<testsuite name="domain.legend.LegendTest$Fails" tests="4" skipped="0" failures="0" errors="0" timestamp="2024-05-16T20:01:32" hostname="THEONE" time="0.006">
   <properties/>
   <testcase name="Should throw bad name exception()" classname="domain.legend.LegendTest$Fails" time="0.001"/>
-  <testcase name="Should throw agility exception()" classname="domain.legend.LegendTest$Fails" time="0.006"/>
+  <testcase name="Should throw agility exception()" classname="domain.legend.LegendTest$Fails" time="0.003"/>
   <testcase name="Should throw perception exception()" classname="domain.legend.LegendTest$Fails" time="0.001"/>
   <testcase name="Should throw strength exception()" classname="domain.legend.LegendTest$Fails" time="0.001"/>
   <system-out><![CDATA[]]></system-out>

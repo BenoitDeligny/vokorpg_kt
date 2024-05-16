@@ -1,19 +1,20 @@
 package domain.legend
 
-import domain.Damages
 import domain.Damages.Companion.damages
 import domain.GameMode.EASY
 import domain.GameMode.NORMAL
-import domain.Might
 import domain.Might.Companion.mightLevels
-import domain.legend.Legend.Factory.create
+import domain.legend.Agility.Factory.agility
+import domain.legend.Legend.Companion.create
+import domain.legend.Perception.Factory.perception
+import domain.legend.Strength.Factory.strength
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.ranges.shouldBeIn
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.Test
-import vokorpg.domain.legend.model.Gear.Factory.standardGear
+import vokorpg.domain.Gear.Companion.standardGear
 
 class LegendTest {
 
@@ -99,13 +100,11 @@ class LegendTest {
         @Test
         fun `Should throw strength exception`() {
             shouldThrow<IllegalArgumentException> {
-                Legend(
-                    Identity.create("MyHero"),
-                    Strength(0),
-                    Agility.create(NORMAL),
-                    Perception.create(NORMAL),
-                    gear = standardGear()
+                create(
+                    gameMode = NORMAL,
+                    name = "MyHero"
                 )
+                    .copy(strength = 0.strength)
             }
                 .apply { message shouldBe "Strength should be positive. Value = 0." }
         }
@@ -113,13 +112,11 @@ class LegendTest {
         @Test
         fun `Should throw agility exception`() {
             shouldThrow<IllegalArgumentException> {
-                Legend(
-                    Identity.create("MyHero"),
-                    Strength.create(NORMAL),
-                    Agility(0),
-                    Perception.create(NORMAL),
-                    gear = standardGear()
+                create(
+                    gameMode = NORMAL,
+                    name = "MyHero"
                 )
+                    .copy(agility = 0.agility)
             }
                 .apply { message shouldBe "Agility should be positive. Value = 0." }
         }
@@ -127,13 +124,11 @@ class LegendTest {
         @Test
         fun `Should throw perception exception`() {
             shouldThrow<IllegalArgumentException> {
-                Legend(
-                    Identity.create("MyHero"),
-                    Strength.create(NORMAL),
-                    Agility.create(NORMAL),
-                    Perception(0),
-                    gear = standardGear()
+                create(
+                    gameMode = NORMAL,
+                    name = "MyHero"
                 )
+                    .copy(perception = 0.perception)
             }
                 .apply { message shouldBe "Perception should be positive. Value = 0." }
 

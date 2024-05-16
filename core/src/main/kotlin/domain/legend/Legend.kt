@@ -1,27 +1,29 @@
 package domain.legend
 
-import domain.*
+import domain.CombatDicePool
+import domain.Damages
 import domain.Dice.Companion.aSixSidedDice
 import domain.Dice.Companion.rollSixSidedDice
+import domain.GameMode
+import domain.Might
 import domain.Might.Companion.total
 import domain.legend.Identity.Factory.create
 import domain.legend.model.LegendCombatChart.Companion.combatDicePoolFor
 import ulid.ULID
-import vokorpg.domain.legend.model.Gear
-import vokorpg.domain.legend.model.Gear.Factory.standardGear
+import vokorpg.domain.Gear
+import vokorpg.domain.Gear.Companion.standardGear
 
-data class Legend(
+// Private constructor not ideal - this.copy() can bypass it
+data class Legend private constructor(
     val identity: Identity,
     val strength: Strength,
     val agility: Agility,
     val perception: Perception,
-    // TODO: is it ok to move it on private var that being initiated in the factory ?
     val might: Might = total(strength.value, agility.value, perception.value),
     val gear: Gear,
-    // TODO: is it ok to move it on private var that being initiated in the factory ?
     val combatDicePool: CombatDicePool = combatDicePoolFor(might)
 ) {
-    companion object Factory {
+    companion object {
         fun create(gameMode: GameMode, name: String): Legend = Legend(
             identity = create(name),
             strength = Strength.create(gameMode),
@@ -33,9 +35,11 @@ data class Legend(
 
     // TODO: take bonus in account
     fun attack(): Int = combatDicePool.roll()
-    fun runAway(): Int = agility.value + rollSixSidedDice(2)
     infix fun takes(damages: Damages): Legend = this.copy(might = might - damages)
+    fun canRunAway(monsterAntiRunAwayRoll: Int): Boolean = runAway() > monsterAntiRunAwayRoll
     fun isDead(): Boolean = might.remaining <= 0
+
+    private fun runAway(): Int = agility.value + rollSixSidedDice(2)
 }
 
 data class Identity(
@@ -59,6 +63,7 @@ data class Identity(
 @JvmInline
 value class Strength(val value: Int) {
     companion object Factory {
+        val Int.strength get() = Strength(this)
         fun create(gameMode: GameMode): Strength = Strength(aSixSidedDice.roll(gameMode.abilityModifier))
     }
 
@@ -70,6 +75,7 @@ value class Strength(val value: Int) {
 @JvmInline
 value class Agility(val value: Int) {
     companion object Factory {
+        val Int.agility get() = Agility(this)
         fun create(gameMode: GameMode): Agility = Agility(aSixSidedDice.roll(gameMode.abilityModifier))
     }
 
@@ -81,6 +87,7 @@ value class Agility(val value: Int) {
 @JvmInline
 value class Perception(val value: Int) {
     companion object Factory {
+        val Int.perception get() = Perception(this)
         fun create(gameMode: GameMode): Perception = Perception(aSixSidedDice.roll(gameMode.abilityModifier))
     }
 
