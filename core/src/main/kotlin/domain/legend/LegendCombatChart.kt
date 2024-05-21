@@ -1,12 +1,11 @@
-package domain.legend.model
+package vokorpg.domain.legend
 
-import domain.CombatDicePool
-import domain.Dice.Companion.aSixSidedDice
-import domain.Might
+import vokorpg.domain.sharedkernel.CombatDicePool
+import vokorpg.domain.sharedkernel.Dice.Companion.aSixSidedDice
+import vokorpg.domain.sharedkernel.Might
 
 enum class LegendCombatChart(
     val numberOfDice: Int,
-    // TODO: Should be Might instead of Int ?
     val minMightLevel: Int,
     val maxMightLevel: Int
 ) {
@@ -23,7 +22,7 @@ enum class LegendCombatChart(
     TEN(10, 283, Int.MAX_VALUE);
 
     companion object {
-        fun combatDicePoolFor(might: Might): CombatDicePool = CombatDicePool(MutableList(retrieveCombatChartBy(might).numberOfDice) { aSixSidedDice})
+        fun combatDicePoolFor(might: Might): CombatDicePool = CombatDicePool(List(retrieveCombatChartBy(might).numberOfDice) { aSixSidedDice})
         private fun retrieveCombatChartBy(might: Might): LegendCombatChart = entries.find { might.level in it.minMightLevel..it.maxMightLevel } ?: ZERO
     }
 }

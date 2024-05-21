@@ -1,4 +1,4 @@
-package domain.monster.model
+package vokorpg.domain.monster
 
 enum class MonsterCombatChart(
     val numberOfDice: Int,

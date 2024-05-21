@@ -1,13 +1,8 @@
 package domain.monster
 
-import domain.Dice
-import domain.GameMode
-import domain.Might
-import domain.Might.Companion.mightLevels
-import domain.legend.Legend
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import vokorpg.domain.sharedkernel.Might.Companion.mights
 
 class MonsterTest {
     @Test
@@ -16,7 +11,7 @@ class MonsterTest {
         // When
         val monster = Monster(
             name = "Boss",
-            might = 15.mightLevels
+            might = 15.mights
         )
             .takes(5)
 

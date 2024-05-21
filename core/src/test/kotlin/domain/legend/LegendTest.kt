@@ -1,9 +1,5 @@
 package domain.legend
 
-import domain.Damages.Companion.damages
-import domain.GameMode.EASY
-import domain.GameMode.NORMAL
-import domain.Might.Companion.mightLevels
 import domain.legend.Agility.Factory.agility
 import domain.legend.Legend.Companion.create
 import domain.legend.Perception.Factory.perception
@@ -14,7 +10,13 @@ import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.Test
-import vokorpg.domain.Gear.Companion.standardGear
+import vokorpg.domain.gear.Gear
+import vokorpg.domain.gear.Item.Armor
+import vokorpg.domain.gear.ItemIdentity
+import vokorpg.domain.sharedkernel.Damages.Companion.damages
+import vokorpg.domain.sharedkernel.GameMode.EASY
+import vokorpg.domain.sharedkernel.GameMode.NORMAL
+import vokorpg.domain.sharedkernel.Might.Companion.mights
 
 class LegendTest {
 
@@ -44,18 +46,47 @@ class LegendTest {
         @Test
         fun `Should takes damages`() {
             // given
-            // when
-            val legend = create(
-                gameMode = NORMAL,
-                name = "MyHero"
+            // todo create scenari
+            val legend = Legend(
+                identity = Identity.create("MyHero"),
+                strength = 5.strength,
+                agility = 5.agility,
+                perception = 5.perception,
+                might = 15.mights,
+                gear = Gear.standardGear()
             )
-                .copy(might = 15.mightLevels)
-                .run {
-                    this takes 5.damages
-                }
-
+                .run { this takes 5.damages }
+            // when
             // then
             legend.remainingMight() shouldBe 10
+        }
+
+        @Test
+        fun `Should gain might when get more stuff`() {
+            // given
+            val supArmor = Armor(
+                itemIdentity = ItemIdentity(
+                    name = "Supa Armor",
+                    description = "A great armor",
+                    isRelic = false
+                ),
+                modifier = 5
+            )
+
+            // when
+            val legend = Legend(
+                identity = Identity.create("MyHero"),
+                strength = 5.strength,
+                agility = 5.agility,
+                perception = 5.perception,
+                might = 15.mights,
+                gear = Gear.standardGear()
+            )
+                .run { putArmor(supArmor) }
+
+            // then
+            legend.mightLevel() shouldBe 20
+
         }
     }
 
@@ -131,6 +162,19 @@ class LegendTest {
                     .copy(perception = 0.perception)
             }
                 .apply { message shouldBe "Perception should be positive. Value = 0." }
+
+        }
+
+        @Test
+        fun `Should throw might level exception`() {
+            shouldThrow<IllegalArgumentException> {
+                create(
+                    gameMode = NORMAL,
+                    name = "MyHero"
+                )
+                    .copy(might = 25.mights)
+            }
+                .apply { message shouldBe "Might level should always be the sum of stats and gear bonus." }
 
         }
     }

@@ -1,17 +1,11 @@
-package domain
+package vokorpg.domain.sharedkernel
 
-import domain.Sides.Companion.sides
+import vokorpg.domain.sharedkernel.Sides.Companion.sides
 import kotlin.random.Random
 
 data class Dice(val sideCount: Sides = 6.sides) {
     companion object {
         val aSixSidedDice: Dice = Dice()
-
-        // TODO: is it well design ? Ownership ?
-        fun rollSixSidedDice(diceCount: Int): Int {
-            require(diceCount > 0) { "Number of dice should be greater than 0. Dice = $diceCount." }
-            return List(diceCount) { aSixSidedDice }.sumOf { it.roll() }
-        }
     }
 
     init {
@@ -32,6 +26,6 @@ value class Sides(private val value: Int) {
 }
 
 @JvmInline
-value class CombatDicePool(val dice: MutableList<Dice>) {
+value class CombatDicePool(val dice: List<Dice>) {
     fun roll(): Int = dice.sumOf { it.roll() }
 }

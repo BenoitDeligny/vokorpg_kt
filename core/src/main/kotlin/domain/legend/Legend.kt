@@ -1,45 +1,64 @@
 package domain.legend
 
-import domain.CombatDicePool
-import domain.Damages
-import domain.Dice.Companion.aSixSidedDice
-import domain.Dice.Companion.rollSixSidedDice
-import domain.GameMode
-import domain.Might
-import domain.Might.Companion.total
 import domain.legend.Identity.Factory.create
-import domain.legend.model.LegendCombatChart.Companion.combatDicePoolFor
 import ulid.ULID
-import vokorpg.domain.Gear
-import vokorpg.domain.Gear.Companion.standardGear
+import vokorpg.domain.gear.Gear
+import vokorpg.domain.gear.Gear.Companion.standardGear
+import vokorpg.domain.gear.Item
+import vokorpg.domain.legend.LegendCombatChart.Companion.combatDicePoolFor
+import vokorpg.domain.sharedkernel.CombatDicePool
+import vokorpg.domain.sharedkernel.Damages
+import vokorpg.domain.sharedkernel.Dice.Companion.aSixSidedDice
+import vokorpg.domain.sharedkernel.GameMode
+import vokorpg.domain.sharedkernel.Might
+import vokorpg.domain.sharedkernel.Might.Companion.might
+import vokorpg.domain.sharedkernel.Might.Companion.mights
+import vokorpg.domain.sharedkernel.Might.Companion.total
 
-// Private constructor not ideal - this.copy() can bypass it
-data class Legend private constructor(
+data class Legend(
     val identity: Identity,
     val strength: Strength,
     val agility: Agility,
     val perception: Perception,
-    val might: Might = total(strength.value, agility.value, perception.value),
+    var might: Might,
     val gear: Gear,
-    val combatDicePool: CombatDicePool = combatDicePoolFor(might)
 ) {
+    val combatDicePool get() = combatDicePoolFor(might)
+
     companion object {
-        fun create(gameMode: GameMode, name: String): Legend = Legend(
-            identity = create(name),
-            strength = Strength.create(gameMode),
-            agility = Agility.create(gameMode),
-            perception = Perception.create(gameMode),
-            gear = standardGear(),
-        )
+        fun create(gameMode: GameMode, name: String): Legend {
+            val identity = create(name)
+            val strength = Strength.create(gameMode)
+            val agility = Agility.create(gameMode)
+            val perception = Perception.create(gameMode)
+            val gear = standardGear()
+            val might = total(strength.value, agility.value, perception.value, gear.mightBonus()).mights
+
+            return Legend(
+                identity = identity,
+                strength = strength,
+                agility = agility,
+                perception = perception,
+                might = might,
+                gear = gear,
+            )
+        }
+    }
+
+    init {
+        require(might.level == total(strength.value, agility.value, perception.value, gear.mightBonus())) { "Might level should always be the sum of stats and gear bonus." }
+        might = might.copy(level = total(strength.value, agility.value, perception.value, gear.mightBonus()))
     }
 
     // TODO: take bonus in account
-    fun attack(): Int = combatDicePool.roll()
-    infix fun takes(damages: Damages): Legend = this.copy(might = might - damages)
-    fun canRunAway(monsterAntiRunAwayRoll: Int): Boolean = runAway() > monsterAntiRunAwayRoll
-    fun isDead(): Boolean = might.remaining <= 0
+//    fun attack(): Int = combatDicePool.roll()
+    infix fun takes(damages: Damages): Legend = copy(might = might - damages)
+//    fun canRunAway(monsterAntiRunAwayRoll: Int): Boolean = runAway() > monsterAntiRunAwayRoll
+//    fun isDead(): Boolean = might.remaining <= 0
 
-    private fun runAway(): Int = agility.value + rollSixSidedDice(2)
+    fun putArmor(armor: Item.Armor) = copy(gear = gear.copy(armor = armor))
+
+//    private fun runAway(): Int = agility.value + rollSixSidedDice(2)
 }
 
 data class Identity(

@@ -1,12 +1,14 @@
-package domain
+package vokorpg.domain.sharedkernel
 
 data class Might(
     val level: Int,
     val remaining: Int = level
 ) {
     companion object {
-        val Int.mightLevels get() = Might(this)
-        fun total(vararg bonus: Int): Might = bonus.sum().mightLevels
+        val ZERO get() = Might(0)
+        val Int.might get() = Might(this)
+        val Int.mights get() = Might(this)
+        fun total(vararg bonus: Int): Int = bonus.sum()
     }
 
     init {
@@ -14,11 +16,4 @@ data class Might(
     }
 
     operator fun minus(other: Damages) = this.copy(remaining = remaining - other.value)
-}
-
-@JvmInline
-value class Damages(val value: Int) {
-    companion object {
-        val Int.damages get() = Damages(this)
-    }
 }

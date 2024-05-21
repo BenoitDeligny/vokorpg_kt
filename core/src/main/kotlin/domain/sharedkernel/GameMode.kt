@@ -1,4 +1,4 @@
-package domain
+package vokorpg.domain.sharedkernel
 
 enum class GameMode(val abilityModifier: Int) {
     NORMAL(1),
