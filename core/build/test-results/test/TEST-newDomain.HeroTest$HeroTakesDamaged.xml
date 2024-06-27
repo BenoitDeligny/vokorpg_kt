@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="newDomain.HeroTest$HeroTakesDamaged" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-06-27T20:46:33" hostname="THEONE" time="0.0">
+  <properties/>
+  <testcase name="hero takes damages()" classname="newDomain.HeroTest$HeroTakesDamaged" time="0.0"/>
+  <testcase name="hero can't be take more damages than remaining might()" classname="newDomain.HeroTest$HeroTakesDamaged" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

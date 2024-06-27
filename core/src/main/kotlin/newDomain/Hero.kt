@@ -1,76 +1,40 @@
 package vokorpg.newDomain
 
-// TODO: what about NewHero class only for the creation of the character at the start of the game ?
+import vokorpg.newDomain.Abilities.Companion.randomAbilities
+import vokorpg.newDomain.Armor.Companion.NONE
+import vokorpg.newDomain.Identity.Companion.withRandomAge
+import vokorpg.newDomain.Might.Companion.initialized
+
 data class Hero(
-    val identity: Identity,
-    val abilities: Abilities,
+    private val identity: Identity,
+    private val abilities: Abilities,
+    private val armor: Armor = NONE,
+    private val might: Might = initialized(abilities.sum() + armor.mightBonus)
 ) {
     companion object {
         fun random(name: String) = Hero(
-            identity = Identity.withRandomAge(name),
-            abilities = Abilities.random()
+            identity = withRandomAge(name),
+            abilities = randomAbilities(),
         )
     }
 
-    fun might() = Might(abilities.sum())
-}
-
-data class Identity(
-    val name: String,
-    val age: Age,
-) {
-    companion object {
-        fun withRandomAge(name: String) = Identity(name = name, age = Age.random)
-    }
-
     init {
-        require(name.all { it.isLetter() }) { "Name must contains only letters." }
-        require(age in 15..20) { "Age must be between 15 and 20. Age = $age." }
+        require(might.level == (abilities.sum() + armor.mightBonus)) { "Might level should always be the sum of abilities. Level = ${might.level}. Sum = ${abilities.sum()}" }
     }
 
-    operator fun IntRange.contains(age: Age): Boolean {
-        return age.value in this
-    }
+    infix fun takes(damages: Int) = copy(might = might.damaged(damages))
+    infix fun heals(heal: Int) = copy(might = might.healed(heal))
+    infix fun wears(armor: Armor) = copy(armor = armor, might = might.increasedLevel(armor.mightBonus))
+    infix fun removes(armor: Armor) = copy(armor = NONE, might = might.decreasedLevel(armor.mightBonus))
+
+    // TODO: add combatDicePool
+    // TODO: replace Armor by Gear and add everything
+
 }
 
 @JvmInline
-value class Age(val value: Int) {
+value class Armor(val mightBonus: Int) {
     companion object {
-        private val dice = Dice
-        val random = Age(dice.roll(from = 15, until = 20))
+        val NONE = Armor(0)
     }
-}
-
-data class Abilities(
-    val strength: Ability,
-    val agility: Ability,
-    val perception: Ability
-) {
-    companion object {
-        fun random() = Abilities(
-            strength = Ability.random,
-            agility = Ability.random,
-            perception = Ability.random
-        )
-    }
-
-    // TODO: override operator plus
-    fun sum() = strength.value + agility.value + perception.value
-}
-
-@JvmInline
-value class Ability(val value: Int) {
-    companion object {
-        private val dice = Dice
-        val random = Ability(dice.roll(from = 1, until = 6))
-    }
-
-    init {
-        require(value > 0) { "An ability should be positive. Value = $value." }
-    }
-}
-
-data class Might(
-    val level: Int
-) {
 }
