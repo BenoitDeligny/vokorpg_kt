@@ -23,13 +23,13 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">301</div>
+<div class="counter">302</div>
 <p>tests</p>
 </div>
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">0</div>
+<div class="counter">1</div>
 <p>failures</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.058s</div>
+<div class="counter">0.092s</div>
 <p>duration</p>
 </div>
 </td>
@@ -50,8 +50,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox success" id="successRate">
-<div class="percent">100%</div>
+<div class="infoBox failures" id="successRate">
+<div class="percent">99%</div>
 <p>successful</p>
 </div>
 </td>
@@ -61,10 +61,124 @@
 <div id="tabs">
 <ul class="tabLinks">
 <li>
-<a href="#tab0">Tests</a>
+<a href="#tab0">Failed tests</a>
+</li>
+<li>
+<a href="#tab1">Tests</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
+<h2>Failed tests</h2>
+<div class="test">
+<a name="Should gain might when get more stuff()"></a>
+<h3 class="failures">Should gain might when get more stuff()</h3>
+<span class="code">
+<pre>java.lang.IllegalArgumentException: Might level should always be the sum of stats and gear bonus.
+	at domain.legend.Legend.&lt;init&gt;(Legend.kt:44)
+	at domain.legend.Legend.&lt;init&gt;(Legend.kt)
+	at domain.legend.Legend.copy-SOueKMk(Legend.kt)
+	at domain.legend.Legend.copy-SOueKMk$default(Legend.kt)
+	at domain.legend.Legend.putArmor(Legend.kt:55)
+	at domain.legend.LegendTest$NormalMode.Should gain might when get more stuff(LegendTest.kt:85)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:725)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:149)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:140)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:84)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(ExecutableInvoker.java:115)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.lambda$invoke$0(ExecutableInvoker.java:105)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:104)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:98)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:214)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:210)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:135)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:66)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:119)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:94)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:89)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:62)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at jdk.proxy1/jdk.proxy1.$Proxy2.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:193)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:113)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:65)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+</pre>
+</span>
+</div>
+</div>
+<div id="tab1" class="tab">
 <h2>Tests</h2>
 <table>
 <thead>
@@ -78,7 +192,7 @@
 <tr>
 <td class="success">repetition 100 of 300</td>
 <td class="success">Should create a Legend in normal mode()[100]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -90,7 +204,7 @@
 <tr>
 <td class="success">repetition 102 of 300</td>
 <td class="success">Should create a Legend in normal mode()[102]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -108,25 +222,25 @@
 <tr>
 <td class="success">repetition 105 of 300</td>
 <td class="success">Should create a Legend in normal mode()[105]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 106 of 300</td>
 <td class="success">Should create a Legend in normal mode()[106]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 107 of 300</td>
 <td class="success">Should create a Legend in normal mode()[107]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 108 of 300</td>
 <td class="success">Should create a Legend in normal mode()[108]</td>
-<td class="success">0s</td>
+<td class="success">0.002s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -144,7 +258,7 @@
 <tr>
 <td class="success">repetition 110 of 300</td>
 <td class="success">Should create a Legend in normal mode()[110]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -156,7 +270,7 @@
 <tr>
 <td class="success">repetition 112 of 300</td>
 <td class="success">Should create a Legend in normal mode()[112]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -180,7 +294,7 @@
 <tr>
 <td class="success">repetition 116 of 300</td>
 <td class="success">Should create a Legend in normal mode()[116]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -192,7 +306,7 @@
 <tr>
 <td class="success">repetition 118 of 300</td>
 <td class="success">Should create a Legend in normal mode()[118]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -204,7 +318,7 @@
 <tr>
 <td class="success">repetition 11 of 300</td>
 <td class="success">Should create a Legend in normal mode()[11]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -246,13 +360,13 @@
 <tr>
 <td class="success">repetition 126 of 300</td>
 <td class="success">Should create a Legend in normal mode()[126]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 127 of 300</td>
 <td class="success">Should create a Legend in normal mode()[127]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -264,7 +378,7 @@
 <tr>
 <td class="success">repetition 129 of 300</td>
 <td class="success">Should create a Legend in normal mode()[129]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -276,13 +390,13 @@
 <tr>
 <td class="success">repetition 130 of 300</td>
 <td class="success">Should create a Legend in normal mode()[130]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 131 of 300</td>
 <td class="success">Should create a Legend in normal mode()[131]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -306,13 +420,13 @@
 <tr>
 <td class="success">repetition 135 of 300</td>
 <td class="success">Should create a Legend in normal mode()[135]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 136 of 300</td>
 <td class="success">Should create a Legend in normal mode()[136]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -324,7 +438,7 @@
 <tr>
 <td class="success">repetition 138 of 300</td>
 <td class="success">Should create a Legend in normal mode()[138]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -342,13 +456,13 @@
 <tr>
 <td class="success">repetition 140 of 300</td>
 <td class="success">Should create a Legend in normal mode()[140]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 141 of 300</td>
 <td class="success">Should create a Legend in normal mode()[141]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -366,19 +480,19 @@
 <tr>
 <td class="success">repetition 144 of 300</td>
 <td class="success">Should create a Legend in normal mode()[144]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 145 of 300</td>
 <td class="success">Should create a Legend in normal mode()[145]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 146 of 300</td>
 <td class="success">Should create a Legend in normal mode()[146]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -396,7 +510,7 @@
 <tr>
 <td class="success">repetition 149 of 300</td>
 <td class="success">Should create a Legend in normal mode()[149]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -414,13 +528,13 @@
 <tr>
 <td class="success">repetition 151 of 300</td>
 <td class="success">Should create a Legend in normal mode()[151]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 152 of 300</td>
 <td class="success">Should create a Legend in normal mode()[152]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -468,19 +582,19 @@
 <tr>
 <td class="success">repetition 15 of 300</td>
 <td class="success">Should create a Legend in normal mode()[15]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 160 of 300</td>
 <td class="success">Should create a Legend in normal mode()[160]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 161 of 300</td>
 <td class="success">Should create a Legend in normal mode()[161]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -492,7 +606,7 @@
 <tr>
 <td class="success">repetition 163 of 300</td>
 <td class="success">Should create a Legend in normal mode()[163]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -504,7 +618,7 @@
 <tr>
 <td class="success">repetition 165 of 300</td>
 <td class="success">Should create a Legend in normal mode()[165]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -528,7 +642,7 @@
 <tr>
 <td class="success">repetition 169 of 300</td>
 <td class="success">Should create a Legend in normal mode()[169]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -540,13 +654,13 @@
 <tr>
 <td class="success">repetition 170 of 300</td>
 <td class="success">Should create a Legend in normal mode()[170]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 171 of 300</td>
 <td class="success">Should create a Legend in normal mode()[171]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -558,7 +672,7 @@
 <tr>
 <td class="success">repetition 173 of 300</td>
 <td class="success">Should create a Legend in normal mode()[173]</td>
-<td class="success">0s</td>
+<td class="success">0.002s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -582,13 +696,13 @@
 <tr>
 <td class="success">repetition 177 of 300</td>
 <td class="success">Should create a Legend in normal mode()[177]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 178 of 300</td>
 <td class="success">Should create a Legend in normal mode()[178]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -600,13 +714,13 @@
 <tr>
 <td class="success">repetition 17 of 300</td>
 <td class="success">Should create a Legend in normal mode()[17]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 180 of 300</td>
 <td class="success">Should create a Legend in normal mode()[180]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -630,7 +744,7 @@
 <tr>
 <td class="success">repetition 184 of 300</td>
 <td class="success">Should create a Legend in normal mode()[184]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -654,13 +768,13 @@
 <tr>
 <td class="success">repetition 188 of 300</td>
 <td class="success">Should create a Legend in normal mode()[188]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 189 of 300</td>
 <td class="success">Should create a Legend in normal mode()[189]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -678,7 +792,7 @@
 <tr>
 <td class="success">repetition 191 of 300</td>
 <td class="success">Should create a Legend in normal mode()[191]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -702,7 +816,7 @@
 <tr>
 <td class="success">repetition 195 of 300</td>
 <td class="success">Should create a Legend in normal mode()[195]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -714,13 +828,13 @@
 <tr>
 <td class="success">repetition 197 of 300</td>
 <td class="success">Should create a Legend in normal mode()[197]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 198 of 300</td>
 <td class="success">Should create a Legend in normal mode()[198]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -744,13 +858,13 @@
 <tr>
 <td class="success">repetition 200 of 300</td>
 <td class="success">Should create a Legend in normal mode()[200]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 201 of 300</td>
 <td class="success">Should create a Legend in normal mode()[201]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -768,19 +882,19 @@
 <tr>
 <td class="success">repetition 204 of 300</td>
 <td class="success">Should create a Legend in normal mode()[204]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 205 of 300</td>
 <td class="success">Should create a Legend in normal mode()[205]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 206 of 300</td>
 <td class="success">Should create a Legend in normal mode()[206]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -792,25 +906,25 @@
 <tr>
 <td class="success">repetition 208 of 300</td>
 <td class="success">Should create a Legend in normal mode()[208]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 209 of 300</td>
 <td class="success">Should create a Legend in normal mode()[209]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 20 of 300</td>
 <td class="success">Should create a Legend in normal mode()[20]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 210 of 300</td>
 <td class="success">Should create a Legend in normal mode()[210]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -828,7 +942,7 @@
 <tr>
 <td class="success">repetition 213 of 300</td>
 <td class="success">Should create a Legend in normal mode()[213]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -846,7 +960,7 @@
 <tr>
 <td class="success">repetition 216 of 300</td>
 <td class="success">Should create a Legend in normal mode()[216]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -876,25 +990,25 @@
 <tr>
 <td class="success">repetition 220 of 300</td>
 <td class="success">Should create a Legend in normal mode()[220]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 221 of 300</td>
 <td class="success">Should create a Legend in normal mode()[221]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 222 of 300</td>
 <td class="success">Should create a Legend in normal mode()[222]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 223 of 300</td>
 <td class="success">Should create a Legend in normal mode()[223]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -906,7 +1020,7 @@
 <tr>
 <td class="success">repetition 225 of 300</td>
 <td class="success">Should create a Legend in normal mode()[225]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -930,7 +1044,7 @@
 <tr>
 <td class="success">repetition 229 of 300</td>
 <td class="success">Should create a Legend in normal mode()[229]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -954,7 +1068,7 @@
 <tr>
 <td class="success">repetition 232 of 300</td>
 <td class="success">Should create a Legend in normal mode()[232]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -966,7 +1080,7 @@
 <tr>
 <td class="success">repetition 234 of 300</td>
 <td class="success">Should create a Legend in normal mode()[234]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -978,7 +1092,7 @@
 <tr>
 <td class="success">repetition 236 of 300</td>
 <td class="success">Should create a Legend in normal mode()[236]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1020,7 +1134,7 @@
 <tr>
 <td class="success">repetition 242 of 300</td>
 <td class="success">Should create a Legend in normal mode()[242]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1044,7 +1158,7 @@
 <tr>
 <td class="success">repetition 246 of 300</td>
 <td class="success">Should create a Legend in normal mode()[246]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1074,7 +1188,7 @@
 <tr>
 <td class="success">repetition 250 of 300</td>
 <td class="success">Should create a Legend in normal mode()[250]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1116,7 +1230,7 @@
 <tr>
 <td class="success">repetition 257 of 300</td>
 <td class="success">Should create a Legend in normal mode()[257]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1128,7 +1242,7 @@
 <tr>
 <td class="success">repetition 259 of 300</td>
 <td class="success">Should create a Legend in normal mode()[259]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1140,13 +1254,13 @@
 <tr>
 <td class="success">repetition 260 of 300</td>
 <td class="success">Should create a Legend in normal mode()[260]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 261 of 300</td>
 <td class="success">Should create a Legend in normal mode()[261]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1158,19 +1272,19 @@
 <tr>
 <td class="success">repetition 263 of 300</td>
 <td class="success">Should create a Legend in normal mode()[263]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 264 of 300</td>
 <td class="success">Should create a Legend in normal mode()[264]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 265 of 300</td>
 <td class="success">Should create a Legend in normal mode()[265]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1194,7 +1308,7 @@
 <tr>
 <td class="success">repetition 269 of 300</td>
 <td class="success">Should create a Legend in normal mode()[269]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1206,7 +1320,7 @@
 <tr>
 <td class="success">repetition 270 of 300</td>
 <td class="success">Should create a Legend in normal mode()[270]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1230,19 +1344,19 @@
 <tr>
 <td class="success">repetition 274 of 300</td>
 <td class="success">Should create a Legend in normal mode()[274]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 275 of 300</td>
 <td class="success">Should create a Legend in normal mode()[275]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 276 of 300</td>
 <td class="success">Should create a Legend in normal mode()[276]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1254,13 +1368,13 @@
 <tr>
 <td class="success">repetition 278 of 300</td>
 <td class="success">Should create a Legend in normal mode()[278]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 279 of 300</td>
 <td class="success">Should create a Legend in normal mode()[279]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1284,31 +1398,31 @@
 <tr>
 <td class="success">repetition 282 of 300</td>
 <td class="success">Should create a Legend in normal mode()[282]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 283 of 300</td>
 <td class="success">Should create a Legend in normal mode()[283]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 284 of 300</td>
 <td class="success">Should create a Legend in normal mode()[284]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 285 of 300</td>
 <td class="success">Should create a Legend in normal mode()[285]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 286 of 300</td>
 <td class="success">Should create a Legend in normal mode()[286]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1320,7 +1434,7 @@
 <tr>
 <td class="success">repetition 288 of 300</td>
 <td class="success">Should create a Legend in normal mode()[288]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1344,7 +1458,7 @@
 <tr>
 <td class="success">repetition 291 of 300</td>
 <td class="success">Should create a Legend in normal mode()[291]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1362,13 +1476,13 @@
 <tr>
 <td class="success">repetition 294 of 300</td>
 <td class="success">Should create a Legend in normal mode()[294]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 295 of 300</td>
 <td class="success">Should create a Legend in normal mode()[295]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1380,7 +1494,7 @@
 <tr>
 <td class="success">repetition 297 of 300</td>
 <td class="success">Should create a Legend in normal mode()[297]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1398,13 +1512,13 @@
 <tr>
 <td class="success">repetition 29 of 300</td>
 <td class="success">Should create a Legend in normal mode()[29]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 2 of 300</td>
 <td class="success">Should create a Legend in normal mode()[2]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1422,13 +1536,13 @@
 <tr>
 <td class="success">repetition 31 of 300</td>
 <td class="success">Should create a Legend in normal mode()[31]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 32 of 300</td>
 <td class="success">Should create a Legend in normal mode()[32]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1494,13 +1608,13 @@
 <tr>
 <td class="success">repetition 42 of 300</td>
 <td class="success">Should create a Legend in normal mode()[42]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 43 of 300</td>
 <td class="success">Should create a Legend in normal mode()[43]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1554,7 +1668,7 @@
 <tr>
 <td class="success">repetition 51 of 300</td>
 <td class="success">Should create a Legend in normal mode()[51]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1572,7 +1686,7 @@
 <tr>
 <td class="success">repetition 54 of 300</td>
 <td class="success">Should create a Legend in normal mode()[54]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1590,7 +1704,7 @@
 <tr>
 <td class="success">repetition 57 of 300</td>
 <td class="success">Should create a Legend in normal mode()[57]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1608,7 +1722,7 @@
 <tr>
 <td class="success">repetition 5 of 300</td>
 <td class="success">Should create a Legend in normal mode()[5]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1626,7 +1740,7 @@
 <tr>
 <td class="success">repetition 62 of 300</td>
 <td class="success">Should create a Legend in normal mode()[62]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1662,7 +1776,7 @@
 <tr>
 <td class="success">repetition 68 of 300</td>
 <td class="success">Should create a Legend in normal mode()[68]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1674,7 +1788,7 @@
 <tr>
 <td class="success">repetition 6 of 300</td>
 <td class="success">Should create a Legend in normal mode()[6]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1710,7 +1824,7 @@
 <tr>
 <td class="success">repetition 75 of 300</td>
 <td class="success">Should create a Legend in normal mode()[75]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1722,7 +1836,7 @@
 <tr>
 <td class="success">repetition 77 of 300</td>
 <td class="success">Should create a Legend in normal mode()[77]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1740,7 +1854,7 @@
 <tr>
 <td class="success">repetition 7 of 300</td>
 <td class="success">Should create a Legend in normal mode()[7]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1752,7 +1866,7 @@
 <tr>
 <td class="success">repetition 81 of 300</td>
 <td class="success">Should create a Legend in normal mode()[81]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1764,7 +1878,7 @@
 <tr>
 <td class="success">repetition 83 of 300</td>
 <td class="success">Should create a Legend in normal mode()[83]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1788,7 +1902,7 @@
 <tr>
 <td class="success">repetition 87 of 300</td>
 <td class="success">Should create a Legend in normal mode()[87]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1800,7 +1914,7 @@
 <tr>
 <td class="success">repetition 89 of 300</td>
 <td class="success">Should create a Legend in normal mode()[89]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1830,13 +1944,13 @@
 <tr>
 <td class="success">repetition 93 of 300</td>
 <td class="success">Should create a Legend in normal mode()[93]</td>
-<td class="success">0.001s</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">repetition 94 of 300</td>
 <td class="success">Should create a Legend in normal mode()[94]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1854,7 +1968,7 @@
 <tr>
 <td class="success">repetition 97 of 300</td>
 <td class="success">Should create a Legend in normal mode()[97]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1866,7 +1980,7 @@
 <tr>
 <td class="success">repetition 99 of 300</td>
 <td class="success">Should create a Legend in normal mode()[99]</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -1874,6 +1988,12 @@
 <td class="success">Should create a Legend in normal mode()[9]</td>
 <td class="success">0s</td>
 <td class="success">passed</td>
+</tr>
+<tr>
+<td class="failures">Should gain might when get more stuff()</td>
+<td class="failures">Should gain might when get more stuff()</td>
+<td class="failures">0.004s</td>
+<td class="failures">failed</td>
 </tr>
 <tr>
 <td class="success">Should takes damages()</td>
@@ -1891,7 +2011,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.4</a> at 16 mai 2024, 22:01:32</p>
+<a href="http://www.gradle.org">Gradle 8.4</a> at 24 juin 2024, 13:35:40</p>
 </div>
 </div>
 </body>

@@ -46,19 +46,20 @@ class LegendTest {
         @Test
         fun `Should takes damages`() {
             // given
-            // todo create scenari
+            // todo create scenario
             val legend = Legend(
                 identity = Identity.create("MyHero"),
                 strength = 5.strength,
                 agility = 5.agility,
                 perception = 5.perception,
-                might = 15.mights,
                 gear = Gear.standardGear()
             )
                 .run { this takes 5.damages }
+
             // when
             // then
             legend.remainingMight() shouldBe 10
+            legend.mightLevel() shouldBe 15
         }
 
         @Test
@@ -79,14 +80,13 @@ class LegendTest {
                 strength = 5.strength,
                 agility = 5.agility,
                 perception = 5.perception,
-                might = 15.mights,
                 gear = Gear.standardGear()
             )
                 .run { putArmor(supArmor) }
 
             // then
             legend.mightLevel() shouldBe 20
-
+            legend.remainingMight() shouldBe 20
         }
     }
 
