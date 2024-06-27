@@ -1,7 +1,5 @@
 package vokorpg.newDomain
 
-import kotlin.random.Random.Default.nextInt
-
 // TODO: what about NewHero class only for the creation of the character at the start of the game ?
 data class Hero(
     val identity: Identity,
@@ -13,6 +11,8 @@ data class Hero(
             abilities = Abilities.random()
         )
     }
+
+    fun might() = Might(abilities.sum())
 }
 
 data class Identity(
@@ -53,10 +53,13 @@ data class Abilities(
             perception = Ability.random
         )
     }
+
+    // TODO: override operator plus
+    fun sum() = strength.value + agility.value + perception.value
 }
 
 @JvmInline
-value class Ability(private val value: Int) {
+value class Ability(val value: Int) {
     companion object {
         private val dice = Dice
         val random = Ability(dice.roll(from = 1, until = 6))
@@ -67,6 +70,7 @@ value class Ability(private val value: Int) {
     }
 }
 
-object Dice {
-    fun roll(from: Int, until: Int): Int = nextInt(from = from, until = until + 1)
+data class Might(
+    val level: Int
+) {
 }
