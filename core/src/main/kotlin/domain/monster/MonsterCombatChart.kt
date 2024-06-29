@@ -1,5 +1,8 @@
 package vokorpg.domain.monster
 
+import vokorpg.domain.Might
+
+// TODO: Temporary as i don't have database for now
 enum class MonsterCombatChart(
     val numberOfDice: Int,
     val minMightLevel: Int,
@@ -18,7 +21,7 @@ enum class MonsterCombatChart(
     TEN(10, 333, Integer.MAX_VALUE);
 
     companion object {
-        fun combatDiceCount(level: Int): Int = combatChart(level).numberOfDice
-        private fun combatChart(level: Int): MonsterCombatChart = entries.find { level in it.minMightLevel..it.maxMightLevel } ?: ZERO
+        fun retrieveCombatChartBy(might: Might): MonsterCombatChart =
+            entries.find { might.level in it.minMightLevel..it.maxMightLevel } ?: ZERO
     }
 }

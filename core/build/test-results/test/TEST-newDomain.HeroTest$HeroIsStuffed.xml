@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="newDomain.HeroTest$HeroIsStuffed" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-06-27T20:46:33" hostname="THEONE" time="0.001">
-  <properties/>
-  <testcase name="hero removes an armor()" classname="newDomain.HeroTest$HeroIsStuffed" time="0.0"/>
-  <testcase name="hero don't die when removes an armor()" classname="newDomain.HeroTest$HeroIsStuffed" time="0.0"/>
-  <testcase name="hero wears an armor()" classname="newDomain.HeroTest$HeroIsStuffed" time="0.001"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

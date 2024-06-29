@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="domain.HeroTest$HeroIsStuffed" tests="4" skipped="0" failures="0" errors="0" timestamp="2024-06-29T21:02:55" hostname="THEONE" time="0.0">
+  <properties/>
+  <testcase name="hero takes out an armor()" classname="domain.HeroTest$HeroIsStuffed" time="0.0"/>
+  <testcase name="hero put on an armor()" classname="domain.HeroTest$HeroIsStuffed" time="0.0"/>
+  <testcase name="hero wears an armor()" classname="domain.HeroTest$HeroIsStuffed" time="0.0"/>
+  <testcase name="hero don't die when removes a piece of gear()" classname="domain.HeroTest$HeroIsStuffed" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

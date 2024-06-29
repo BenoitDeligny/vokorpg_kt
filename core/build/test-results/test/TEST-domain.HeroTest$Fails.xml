@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="domain.HeroTest$Fails" tests="4" skipped="0" failures="0" errors="0" timestamp="2024-06-29T21:02:54" hostname="THEONE" time="0.032">
+  <properties/>
+  <testcase name="should throw bad name exception()" classname="domain.HeroTest$Fails" time="0.021"/>
+  <testcase name="should throw strength exception()" classname="domain.HeroTest$Fails" time="0.007"/>
+  <testcase name="should throw perception exception()" classname="domain.HeroTest$Fails" time="0.0"/>
+  <testcase name="should throw agility exception()" classname="domain.HeroTest$Fails" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
