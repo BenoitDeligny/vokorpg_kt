@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.Test
 import vokorpg.domain.Gear
-import vokorpg.domain.Item
 import vokorpg.domain.Item.Armor
 import vokorpg.domain.Item.Weapon
 import vokorpg.domain.Might
@@ -69,7 +68,7 @@ class HeroTest {
             // then
             hero.might.level shouldBe 15
             hero.might.lifePoints shouldBe 10
-            hero.isDead() shouldBe false
+            hero.dead() shouldBe false
         }
 
         @Test
@@ -81,7 +80,7 @@ class HeroTest {
             // then
             hero.might.level shouldBe 15
             hero.might.lifePoints shouldBe 0
-            hero.isDead() shouldBe true
+            hero.dead() shouldBe true
         }
 
         @Test

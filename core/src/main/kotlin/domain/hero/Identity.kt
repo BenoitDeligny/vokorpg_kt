@@ -8,7 +8,6 @@ data class Identity(
     val age: Age,
 ) {
     companion object {
-        // TODO: naming
         fun withRandomAge(name: String) = Identity(name = name, age = random())
     }
 

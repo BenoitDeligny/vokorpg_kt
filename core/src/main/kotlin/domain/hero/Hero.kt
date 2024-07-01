@@ -10,7 +10,7 @@ import vokorpg.domain.Might
 import vokorpg.domain.Might.Companion.initialized
 import vokorpg.domain.hero.Abilities.Companion.randomInEasyMode
 import vokorpg.domain.hero.Abilities.Companion.randomInNormalMode
-import vokorpg.domain.hero.HeroCombatChart.Companion.retrieveCombatChartBy
+import vokorpg.domain.hero.HeroCombatChart.Companion.chartBy
 import vokorpg.domain.hero.Identity.Companion.withRandomAge
 
 data class Hero(
@@ -36,21 +36,20 @@ data class Hero(
     }
 
     init {
-        // TODO: naming
-        val mightSum = abilities.sum() + gear.totalMightBonus()
-        require(might.level == mightSum) { "Might level should always be the sum of abilities. Level = ${might.level}. Sum = $mightSum" }
+        val theoreticalMaxMight = abilities.sum() + gear.totalMightBonus()
+        require(might.level == theoreticalMaxMight) { "Might level should always be the sum of abilities. Level = ${might.level}. Sum = $theoreticalMaxMight" }
     }
 
-    fun combatDicePool(): List<Dice> = List(retrieveCombatChartBy(might).numberOfDice) { Dice }
+    fun combatDicePool(): List<Dice> = List(chartBy(might).numberOfDice) { Dice }
 
     // TODO: naming --> builders (return something) are nouns // manipulators (return void) are verbs
-    infix fun takes(damages: Int) = copy(might = might.damaged(damages))
-    infix fun heals(heal: Int) = copy(might = might.healed(heal))
+    infix fun takes(damages: Int) = copy(might = might.increasedLifePoints(damages))
+    infix fun heals(heal: Int) = copy(might = might.decreasedLifePoints(heal))
     fun attacks() = combatDicePool().sumOf { dice -> dice.roll(from = 1, until = 6) }
 
     // TODO: i would like to make this private --> outsiders must not call this
     // TODO: also it should be "automatic" when the hero comes to 0 life points
-    fun isDead() = might.lifePoints == 0
+    fun dead() = might.lifePoints == 0
 
     // TODO: naming --> builders (return something) are nouns // manipulators (return void) are verbs
     infix fun putOn(item: Item) = copy(

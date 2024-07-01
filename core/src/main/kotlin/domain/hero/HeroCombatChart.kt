@@ -21,7 +21,7 @@ enum class HeroCombatChart(
     TEN(10, 283, Int.MAX_VALUE);
 
     companion object {
-        fun retrieveCombatChartBy(might: Might): HeroCombatChart =
+        fun chartBy(might: Might): HeroCombatChart =
             entries.find { might.level in it.minMightLevel..it.maxMightLevel } ?: ZERO
     }
 }

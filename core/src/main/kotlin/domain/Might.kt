@@ -15,13 +15,13 @@ data class Might(
     }
 
     // TODO: naming
-    fun damaged(damages: Int): Might = when {
+    fun increasedLifePoints(damages: Int): Might = when {
         (lifePoints - damages) >= 0 -> copy(lifePoints = lifePoints - damages)
         else -> copy(lifePoints = 0)
     }
 
     // TODO: naming
-    fun healed(healing: Int) = when {
+    fun decreasedLifePoints(healing: Int) = when {
         (lifePoints + healing) <= level -> copy(lifePoints = lifePoints + healing)
         else -> copy(lifePoints = level)
     }
