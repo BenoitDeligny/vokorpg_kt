@@ -40,12 +40,9 @@ data class Hero(
         require(might.level == theoreticalMaxMight) { "Might level should always be the sum of abilities. Level = ${might.level}. Sum = $theoreticalMaxMight" }
     }
 
-    fun combatDicePool(): List<Dice> = List(chartBy(might).numberOfDice) { Dice }
-
-    // TODO: naming --> builders (return something) are nouns // manipulators (return void) are verbs
-    infix fun takes(damages: Int) = copy(might = might.increasedLifePoints(damages))
-    infix fun heals(heal: Int) = copy(might = might.decreasedLifePoints(heal))
-    fun attacks() = combatDicePool().sumOf { dice -> dice.roll(from = 1, until = 6) }
+    infix fun damagedBy(damages: Int) = copy(might = might.decreasedLifePoints(damages))
+    infix fun healedBy(heal: Int) = copy(might = might.increasedLifePoints(heal))
+    fun attacks() = combatDicePool().sumOf { dice -> dice.sixSidedRoll() } + gear.totalDamagesBonus()
 
     // TODO: i would like to make this private --> outsiders must not call this
     // TODO: also it should be "automatic" when the hero comes to 0 life points
@@ -54,13 +51,15 @@ data class Hero(
     // TODO: naming --> builders (return something) are nouns // manipulators (return void) are verbs
     infix fun putOn(item: Item) = copy(
         gear = gear.wears(item = item),
-        might = might.increasedLevel(item.modifier)
+        might = might.increasedLevel(item.mightModifier)
     )
 
     infix fun takesOut(item: Item) = copy(
         gear = gear.removes(item = item),
-        might = might.decreasedLevel(item.modifier)
+        might = might.decreasedLevel(item.mightModifier)
     )
 
     // TODO: private fun runAway(): Int = agility.value + rollSixSidedDice(2)
+
+    private fun combatDicePool(): List<Dice> = List(chartBy(might).numberOfDice) { Dice }
 }

@@ -26,38 +26,61 @@ data class Gear(
 
         // TODO: naming
         val NORMAL_MODE_STARTING_PACK = Gear(
-            armor = Armor(1),
-            weapon = Weapon(1)
+            armor = Armor.BASIC,
+            weapon = Weapon.BASIC
         )
 
         // TODO: naming
         val EASY_MODE_STARTING_PACK = Gear(
-            armor = Armor(1),
-            boots = Boots(1),
-            weapon = Weapon(1)
+            armor = Armor.BASIC,
+            boots = Boots.BASIC,
+            weapon = Weapon.BASIC
         )
     }
 
-    // TODO: how to make modifiers works ?
-    // Ideas:
-    // 1: Make a Modifier -> value + type
-    // 2: Filtering it directly in methods totalMightBonus and so on
-    fun totalMightBonus() = armor.modifier +
-            belt.modifier +
-            boots.modifier +
-            cloak.modifier +
-            costume.modifier +
-            gloves.modifier +
-            helmet.modifier +
-            mask.modifier +
-            necklace.modifier +
-            weapon.modifier +
-            ring.modifier +
-            shield.modifier +
-            wristbands.modifier
-//            rightRing.mightBonus +
-//            secondaryWeapon.mightBonus +
+    fun totalMightBonus() = armor.mightModifier +
+            belt.mightModifier +
+            boots.mightModifier +
+            cloak.mightModifier +
+            costume.mightModifier +
+            gloves.mightModifier +
+            helmet.mightModifier +
+            mask.mightModifier +
+            necklace.mightModifier +
+            weapon.mightModifier +
+            ring.mightModifier +
+            shield.mightModifier +
+            wristbands.mightModifier
 
+    fun totalDamagesBonus() = armor.damageModifier +
+            belt.damageModifier +
+            boots.damageModifier +
+            cloak.damageModifier +
+            costume.damageModifier +
+            gloves.damageModifier +
+            helmet.damageModifier +
+            mask.damageModifier +
+            necklace.damageModifier +
+            weapon.damageModifier +
+            ring.damageModifier +
+            shield.damageModifier +
+            wristbands.damageModifier
+
+    fun totalHealBonus() = armor.healModifier +
+            belt.healModifier +
+            boots.healModifier +
+            cloak.healModifier +
+            costume.healModifier +
+            gloves.healModifier +
+            helmet.healModifier +
+            mask.healModifier +
+            necklace.healModifier +
+            weapon.healModifier +
+            ring.healModifier +
+            shield.healModifier +
+            wristbands.healModifier
+
+    // TODO: naming --> builders (return something) are nouns // manipulators (return void) are verbs
     fun removes(item: Item): Gear = when (item) {
         is Armor -> copy(armor = Armor.NONE)
         is Belt -> copy(belt = Belt.NONE)
@@ -73,10 +96,9 @@ data class Gear(
         is Shield -> copy(shield = Shield.NONE)
         is Weapon -> copy(weapon = Weapon.NONE)
         is Wristbands -> copy(wristbands = Wristbands.NONE)
-//        is Ring -> copy(rightRing = Ring.NONE)
-//        is Weapon -> copy(secondaryWeapon = Weapon.NONE)
     }
 
+    // TODO: naming --> builders (return something) are nouns // manipulators (return void) are verbs
     fun wears(item: Item): Gear = when (item) {
         is Armor -> copy(armor = item)
         is Belt -> copy(belt = item)
@@ -92,110 +114,156 @@ data class Gear(
         is Shield -> copy(shield = item)
         is Weapon -> copy(weapon = item)
         is Wristbands -> copy(wristbands = item)
-//        is Ring -> copy(rightRing = Ring.NONE)
-//        is Weapon -> copy(secondaryWeapon = Weapon.NONE)
     }
 }
 
 sealed interface Item {
-    // TODO: naming
-    val modifier: Int
+    val mightModifier: Int
+    val damageModifier: Int
+    val healModifier: Int
 
-    @JvmInline
-    value class Armor(override val modifier: Int) : Item {
+    data class Armor(
+        override val mightModifier: Int,
+        override val damageModifier: Int,
+        override val healModifier: Int,
+    ) : Item {
         companion object {
-            val NONE = Armor(0)
+            val NONE = Armor(mightModifier = 0, damageModifier = 0, healModifier = 0)
+            val BASIC = Armor(mightModifier = 1, damageModifier = 0, healModifier = 0)
+            fun mightArmor(mightModifier: Int) = Armor(mightModifier = mightModifier, damageModifier = 0, healModifier = 0)
         }
     }
 
-    @JvmInline
-    value class Belt(override val modifier: Int) : Item {
+    data class Belt(
+        override val mightModifier: Int,
+        override val damageModifier: Int,
+        override val healModifier: Int,
+    ) : Item {
         companion object {
-            val NONE = Belt(0)
+            val NONE = Belt(mightModifier = 0, damageModifier = 0, healModifier = 0)
         }
     }
 
-    @JvmInline
-    value class Boots(override val modifier: Int) : Item {
+    data class Boots(
+        override val mightModifier: Int,
+        override val damageModifier: Int,
+        override val healModifier: Int,
+    ) : Item {
         companion object {
-            val NONE = Boots(0)
+            val NONE = Boots(mightModifier = 0, damageModifier = 0, healModifier = 0)
+            val BASIC = Boots(mightModifier = 0, damageModifier = 0, healModifier = 1)
         }
     }
 
-    @JvmInline
-    value class Cloak(override val modifier: Int) : Item {
+    data class Cloak(
+        override val mightModifier: Int,
+        override val damageModifier: Int,
+        override val healModifier: Int,
+    ) : Item {
         companion object {
-            val NONE = Cloak(0)
+            val NONE = Cloak(mightModifier = 0, damageModifier = 0, healModifier = 0)
         }
     }
 
-    @JvmInline
-    value class Consumable(override val modifier: Int) : Item {
+    data class Consumable(
+        override val mightModifier: Int,
+        override val damageModifier: Int,
+        override val healModifier: Int,
+    ) : Item {
         companion object {
             val NONE = emptyList<Consumable>()
         }
     }
 
-    @JvmInline
-    value class Costume(override val modifier: Int) : Item {
+    data class Costume(
+        override val mightModifier: Int,
+        override val damageModifier: Int,
+        override val healModifier: Int,
+    ) : Item {
         companion object {
-            val NONE = Costume(0)
+            val NONE = Costume(mightModifier = 0, damageModifier = 0, healModifier = 0)
         }
     }
 
-    @JvmInline
-    value class Gloves(override val modifier: Int) : Item {
+    data class Gloves(
+        override val mightModifier: Int,
+        override val damageModifier: Int,
+        override val healModifier: Int,
+    ) : Item {
         companion object {
-            val NONE = Gloves(0)
+            val NONE = Gloves(mightModifier = 0, damageModifier = 0, healModifier = 0)
         }
     }
 
-    @JvmInline
-    value class Helmet(override val modifier: Int) : Item {
+    data class Helmet(
+        override val mightModifier: Int,
+        override val damageModifier: Int,
+        override val healModifier: Int,
+    ) : Item {
         companion object {
-            val NONE = Helmet(0)
+            val NONE = Helmet(mightModifier = 0, damageModifier = 0, healModifier = 0)
         }
     }
 
-    @JvmInline
-    value class Mask(override val modifier: Int) : Item {
+    data class Mask(
+        override val mightModifier: Int,
+        override val damageModifier: Int,
+        override val healModifier: Int,
+    ) : Item {
         companion object {
-            val NONE = Mask(0)
+            val NONE = Mask(mightModifier = 0, damageModifier = 0, healModifier = 0)
         }
     }
 
-    @JvmInline
-    value class Necklace(override val modifier: Int) : Item {
+    data class Necklace(
+        override val mightModifier: Int,
+        override val damageModifier: Int,
+        override val healModifier: Int,
+    ) : Item {
         companion object {
-            val NONE = Necklace(0)
+            val NONE = Necklace(mightModifier = 0, damageModifier = 0, healModifier = 0)
         }
     }
 
-    @JvmInline
-    value class Weapon(override val modifier: Int) : Item {
+    data class Weapon(
+        override val mightModifier: Int,
+        override val damageModifier: Int,
+        override val healModifier: Int,
+    ) : Item {
         companion object {
-            val NONE = Weapon(0)
+            val NONE = Weapon(mightModifier = 0, damageModifier = 0, healModifier = 0)
+            val BASIC = Weapon(mightModifier = 0, damageModifier = 1, healModifier = 0)
+            fun damageWeapon(damageModifier: Int) = Weapon(mightModifier = 0, damageModifier = damageModifier, healModifier = 0)
         }
     }
 
-    @JvmInline
-    value class Ring(override val modifier: Int) : Item {
+    data class Ring(
+        override val mightModifier: Int,
+        override val damageModifier: Int,
+        override val healModifier: Int,
+    ) : Item {
         companion object {
-            val NONE = Ring(0)
+            val NONE = Ring(mightModifier = 0, damageModifier = 0, healModifier = 0)
         }
     }
 
-    @JvmInline
-    value class Shield(override val modifier: Int) : Item {
+    data class Shield(
+        override val mightModifier: Int,
+        override val damageModifier: Int,
+        override val healModifier: Int,
+    ) : Item {
         companion object {
-            val NONE = Shield(0)
+            val NONE = Shield(mightModifier = 0, damageModifier = 0, healModifier = 0)
         }
     }
 
-    @JvmInline
-    value class Wristbands(override val modifier: Int) : Item {
+    data class Wristbands(
+        override val mightModifier: Int,
+        override val damageModifier: Int,
+        override val healModifier: Int,
+    ) : Item {
         companion object {
-            val NONE = Wristbands(0)
+            val NONE = Wristbands(mightModifier = 0, damageModifier = 0, healModifier = 0)
         }
     }
 }

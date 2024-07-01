@@ -14,16 +14,14 @@ data class Might(
         require(lifePoints >= 0) { "Remaining might cannot be negative. Remaining = $lifePoints." }
     }
 
-    // TODO: naming
-    fun increasedLifePoints(damages: Int): Might = when {
-        (lifePoints - damages) >= 0 -> copy(lifePoints = lifePoints - damages)
-        else -> copy(lifePoints = 0)
-    }
-
-    // TODO: naming
-    fun decreasedLifePoints(healing: Int) = when {
+    fun increasedLifePoints(healing: Int) = when {
         (lifePoints + healing) <= level -> copy(lifePoints = lifePoints + healing)
         else -> copy(lifePoints = level)
+    }
+
+    fun decreasedLifePoints(damages: Int): Might = when {
+        (lifePoints - damages) >= 0 -> copy(lifePoints = lifePoints - damages)
+        else -> copy(lifePoints = 0)
     }
 
     fun increasedLevel(increment: Int) = copy(
@@ -38,7 +36,4 @@ data class Might(
             false -> 1
         }
     )
-
-    operator fun minus(other: Int): Might = copy(lifePoints = lifePoints - other)
-    operator fun plus(other: Int): Might = copy(lifePoints = lifePoints + other)
 }

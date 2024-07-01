@@ -27,6 +27,6 @@ value class Age(val value: Int) {
         private val dice = Dice
 
         // TODO: naming
-        fun random() = Age(dice.roll(from = 15, until = 20))
+        fun random() = Age(14 + dice.sixSidedRoll())
     }
 }

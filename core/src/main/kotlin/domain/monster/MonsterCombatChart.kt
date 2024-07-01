@@ -21,7 +21,7 @@ enum class MonsterCombatChart(
     TEN(10, 333, Integer.MAX_VALUE);
 
     companion object {
-        fun retrieveCombatChartBy(might: Might): MonsterCombatChart =
+        fun chartBy(might: Might): MonsterCombatChart =
             entries.find { might.level in it.minMightLevel..it.maxMightLevel } ?: ZERO
     }
 }

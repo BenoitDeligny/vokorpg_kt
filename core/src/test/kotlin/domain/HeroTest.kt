@@ -8,8 +8,9 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.Test
 import vokorpg.domain.Gear
-import vokorpg.domain.Item.Armor
+import vokorpg.domain.Item.Armor.Companion.mightArmor
 import vokorpg.domain.Item.Weapon
+import vokorpg.domain.Item.Weapon.Companion.damageWeapon
 import vokorpg.domain.Might
 import vokorpg.domain.hero.Abilities
 import vokorpg.domain.hero.Ability
@@ -32,9 +33,8 @@ class HeroTest {
                     abilities.strength.value shouldBeIn 2..7
                     abilities.agility.value shouldBeIn 2..7
                     abilities.perception.value shouldBeIn 2..7
-                    might.level shouldBeIn 8..23
+                    might.level shouldBeIn 7..22
                     might.lifePoints shouldBeEqual might.level
-                    combatDicePool().size shouldBeIn 1..2
                 }
         }
 
@@ -50,9 +50,8 @@ class HeroTest {
                     abilities.strength.value shouldBeIn 5..10
                     abilities.agility.value shouldBeIn 5..10
                     abilities.perception.value shouldBeIn 5..10
-                    might.level shouldBeIn 18..33
+                    might.level shouldBeIn 16..31
                     might.lifePoints shouldBeEqual might.level
-                    combatDicePool().size shouldBeIn 1..3
                 }
         }
     }
@@ -63,7 +62,7 @@ class HeroTest {
         fun `hero takes damages and lives`() {
             // given
             // when
-            val hero = aNewHero().run { this takes 5 }
+            val hero = aNewHero().run { this damagedBy 5 }
 
             // then
             hero.might.level shouldBe 15
@@ -75,7 +74,7 @@ class HeroTest {
         fun `hero takes damages and dies`() {
             // given
             // when
-            val hero = aNewHero().run { this takes 15 }
+            val hero = aNewHero().run { this damagedBy 15 }
 
             // then
             hero.might.level shouldBe 15
@@ -87,7 +86,7 @@ class HeroTest {
         fun `hero can't be take more damages than remaining might`() {
             // given
             // when
-            val hero = aNewHero().run { this takes 25 }
+            val hero = aNewHero().run { this damagedBy 25 }
 
             // then
             hero.might.level shouldBe 15
@@ -101,7 +100,7 @@ class HeroTest {
         fun `hero is healed`() {
             // given
             // when
-            val hero = aDamagedHero().run { this heals 5 }
+            val hero = aDamagedHero().run { this healedBy 5 }
 
             // then
             hero.might.level shouldBe 15
@@ -112,7 +111,7 @@ class HeroTest {
         fun `hero cannot be heal more than might level`() {
             // given
             // when
-            val hero = aNewHero().run { this heals 5 }
+            val hero = aNewHero().run { this healedBy 5 }
 
             // then
             hero.might.level shouldBe 15
@@ -136,7 +135,7 @@ class HeroTest {
         @Test
         fun `hero put on an armor`() {
             // given
-            val armor = Armor(5)
+            val armor = mightArmor(mightModifier = 5)
 
             // when
             val hero = aNewHero().run { this putOn armor }
@@ -162,7 +161,7 @@ class HeroTest {
             // given
             // when
             val hero = anArmoredHero()
-                .run { this takes 20 }
+                .run { this damagedBy 20 }
                 .run { this takesOut gear.armor }
 
             // then
@@ -200,7 +199,7 @@ class HeroTest {
 
             // when
             // then
-            hero.attacks() shouldBeIn 7..17
+            hero.attacks() shouldBeIn 6..11
         }
     }
 
@@ -289,7 +288,7 @@ private fun anArmoredHero() = Hero(
         agility = Ability(5),
         perception = Ability(5)
     ),
-    gear = Gear(armor = Armor(15))
+    gear = Gear(armor = mightArmor(15))
 )
 
 private fun anArmedHero() = Hero(
@@ -299,5 +298,5 @@ private fun anArmedHero() = Hero(
         agility = Ability(5),
         perception = Ability(5)
     ),
-    gear = Gear(weapon = Weapon(5))
+    gear = Gear(weapon = damageWeapon(5))
 )

@@ -35,8 +35,8 @@ value class Ability(val value: Int) {
         private val dice = Dice
 
         // TODO: naming
-        fun randomInNormalMode() = Ability(dice.roll(from = 1, until = 6) + NORMAL.abilityModifier)
-        fun randomInEasyMode() = Ability(dice.roll(from = 1, until = 6) + EASY.abilityModifier)
+        fun randomInNormalMode() = Ability(dice.sixSidedRoll() + NORMAL.abilityModifier)
+        fun randomInEasyMode() = Ability(dice.sixSidedRoll() + EASY.abilityModifier)
     }
 
     init {
